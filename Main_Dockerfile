@@ -1,0 +1,8 @@
+FROM node:9.2.0
+LABEL maintainer="ziaxdk"
+WORKDIR /here
+ADD index.js /here
+ADD package.json /here
+ADD package-lock.json /here
+RUN npm install --production
+ENTRYPOINT npm start

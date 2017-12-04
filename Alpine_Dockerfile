@@ -1,14 +1,12 @@
 FROM node:9.2.0-alpine
-WORKDIR /here
+LABEL maintainer="ziaxdk"
 RUN apk add --update \
     python \
-    python-dev \
-    py-pip \
     build-base \
-  && pip install virtualenv \
   && rm -rf /var/cache/apk/*
+WORKDIR /here
 ADD index.js /here
 ADD package.json /here
 ADD package-lock.json /here
-RUN ["npm", "install", "--production"]
-RUN ["npm", "start"]
+RUN npm install --production
+ENTRYPOINT npm start
